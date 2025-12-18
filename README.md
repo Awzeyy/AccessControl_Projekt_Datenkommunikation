@@ -46,10 +46,4 @@ Siehe [Pinouts.txt](Pinouts.txt) für alle Verbindungen.
 - Die wichtigsten Einstellungen (WLAN, Server-IP) sind in `client_main.py` konfigurierbar.
 - Für Details siehe Lastenheft.pdf.
 
----
-
-## Contributors
-- Alexander Ettl
-- Tim Welzel
-
-(c) Alexander Ettl, 2025
+(c) Tim Welzel & Alexander Ettl, 2025
