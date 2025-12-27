@@ -1,11 +1,5 @@
-# RFID Reader Modul fuer ESP32 mit MFRC522
-# Pins laut Pinouts.txt:
-# SDA (CS) = Pin 13
-# SCK      = Pin 14
-# MOSI     = Pin 15
-# MISO     = Pin 16
-# RST      = Pin 17
-
+from machine import Pin
+import time
 import mfrc522
 
 # RFID Pins fuer ESP32
@@ -19,15 +13,30 @@ RFID_CS = 13  # SDA
 rdr = None
 
 def init():
-    """Initialisiert den RFID Reader"""
+    """Initialisiert den RFID Reader mit Hardware-Reset"""
     global rdr
     try:
+        # Hardware-Reset des MFRC522 vor Initialisierung
+        # WICHTIG: CS muss HIGH sein während Reset, um SPI-Modus zu wählen!
+        cs = Pin(RFID_CS, Pin.OUT)
+        cs.value(1) # Deselect / SPI mode select
+        
+        rst = Pin(RFID_RST, Pin.OUT)
+        rst.value(0) # Reset aktiv
+        time.sleep_ms(50)
+        rst.value(1) # Reset inaktiv
+        time.sleep_ms(50)
+        
         rdr = mfrc522.MFRC522(RFID_SCK, RFID_MOSI, RFID_MISO, RFID_RST, RFID_CS)
         print("[RFID] Reader initialisiert")
         return True
     except Exception as e:
         print("[RFID] Fehler bei Initialisierung:", e)
         return False
+
+def reset_and_init():
+    """Alias für init() - für Kompatibilität"""
+    return init()
 
 def read_uid():
     """

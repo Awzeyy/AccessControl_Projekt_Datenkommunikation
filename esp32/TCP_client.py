@@ -88,6 +88,23 @@ def tcp_client(host, port):
             if current_time - last_reconnect_attempt >= RECONNECT_INTERVAL:
                 last_reconnect_attempt = current_time
                 print(f"\n[VERBINDUNG] Periodischer Reconnect-Versuch...")
+                
+                # Prüfe zuerst ob WLAN noch verbunden ist
+                import network
+                wlan = network.WLAN()
+                if not wlan.isconnected():
+                    print("[WLAN] Nicht verbunden - versuche Reconnect...")
+                    try:
+                        import wlan_connect
+                        # Verwende die globalen Variablen aus dem Modul
+                        wlan = wlan_connect.wlan_connect('Alexxx', 'jooo12346')
+                        print(f"[WLAN] Verbunden! IP: {wlan.ifconfig()[0]}")
+                    except Exception as e:
+                        print(f"[WLAN] Reconnect fehlgeschlagen: {e}")
+                        print(f"[VERBINDUNG] Nächster Versuch in {RECONNECT_INTERVAL}s")
+                        continue
+                
+                # Jetzt versuche Server-Verbindung
                 sock = try_connect(host, port)
                 if sock:
                     current_mode = MODE_ONLINE
