@@ -10,7 +10,7 @@ Dieses Projekt implementiert ein RFID-basiertes Zutrittskontrollsystem mit ESP32
 - **LEDs:** Grün (Allow, Pin 6), Rot (Deny, Pin 7)
 
 ### Pinbelegung
-Siehe [Pinouts.txt](Pinouts.txt) für alle Verbindungen.
+Siehe [Pinouts.md](Pinouts.md) für alle Verbindungen.
 
 ## Softwarestruktur
 - **client_main.py:** Startet WLAN, verbindet zum Server, steuert den Client.
@@ -19,7 +19,7 @@ Siehe [Pinouts.txt](Pinouts.txt) für alle Verbindungen.
 - **rfid_reader.py, mfrc522.py:** RFID-Reader-Ansteuerung.
 - **eeprom_storage.py:** Lokale Speicherung der Zutrittsliste (EEPROM-Ersatz).
 - **wlan_connect.py:** WLAN-Verbindung.
-- **server_v2.py:** Python-Server für Zutrittsverwaltung und Synchronisation.
+- **server.py:** Python-Server für Zutrittsverwaltung und Synchronisation.
 - **Lastenheft.pdf:** Projektanforderungen.
 
 ## Funktionen
@@ -31,12 +31,12 @@ Siehe [Pinouts.txt](Pinouts.txt) für alle Verbindungen.
 - **Synchronisation:** Server kann Zutrittsliste an alle Clients verteilen.
 
 ## Installation & Nutzung
-1. **Hardware wie in Pinouts.txt verdrahten.**
+1. **Hardware wie in Pinouts.md verdrahten.**
 2. **ESP32 mit MicroPython flashen.**
 3. **Alle Python-Dateien auf das Board kopieren.**
-4. **Server (`server_v2.py`) auf PC starten:**
+4. **Server (`server.py`) auf PC starten:**
    ```
-   python server_v2.py
+   python server.py
    ```
 5. **ESP32 starten.**
 6. **RFID-Karte auflegen – Status wird auf Display und LEDs angezeigt.**

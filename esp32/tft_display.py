@@ -13,7 +13,7 @@ LED_RED = Pin(7, Pin.OUT)     # Rot = Zutritt verweigert
 LED_GREEN.value(0)
 LED_RED.value(0)
 
-# SPI initialisieren
+# SPI initialisieren (SCL=12, SDA=11)
 spi = SPI(
     2,
     baudrate=20000000,
@@ -23,7 +23,7 @@ spi = SPI(
     mosi=Pin(11),
 )
 
-# TFT initialisieren
+# TFT initialisieren (DC=04, RST=05, CS=10)
 tft = TFT(
     spi,
     Pin(4),

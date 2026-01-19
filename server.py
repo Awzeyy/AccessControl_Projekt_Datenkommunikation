@@ -14,6 +14,8 @@ PORT = 5050        # Port >1024 wg. Admin-Rechten
 #Zutrittsliste (Personalnummern)
 
 userID = ['F39A370E', '20047935', '00220394', '72349395']
+# userID = ['F39A370E', '20047935', '00220394', '72349395']
+# userID = ['20047935', '00220394', '72349395']
 
 #Sperrzeitfenster (Standardwerte: kein Sperrzeitfenster aktiv)
 lock_start = None  # Beginn des Sperr-Zeitfensters
